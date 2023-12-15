@@ -17,7 +17,8 @@ class CursoFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'curso' => fake()->word(),
+            'descripcion' => fake()->sentence(),
         ];
     }
 }
