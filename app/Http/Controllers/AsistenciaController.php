@@ -12,7 +12,7 @@ class AsistenciaController extends Controller
      */
     public function index()
     {
-        //
+        return Asistencia::all();
     }
 
     /**
@@ -28,7 +28,13 @@ class AsistenciaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $asistencia = new Asistencia();
+        $asistencia->alumno_id = $request->alumno_id;
+        $asistencia->curso_id = $request->curso_id;
+        $asistencia->fecha_asistencia = $request->fecha_asistencia;
+        $asistencia->estado = $request->estado;
+        $asistencia->save();
+        return "Asistencia registrada";
     }
 
     /**
@@ -50,16 +56,24 @@ class AsistenciaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Asistencia $asistencia)
+    public function update(Request $request, $id)
     {
-        //
+        $asistencia = Asistencia::find($id);
+        $asistencia->alumno_id = $request->alumno_id;
+        $asistencia->curso_id = $request->curso_id;
+        $asistencia->fecha_asistencia = $request->fecha_asistencia;
+        $asistencia->estado = $request->estado;
+        $asistencia->save();
+        return "Se actualizo la asistencia";
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Asistencia $asistencia)
+    public function destroy($id)
     {
-        //
+        $asistencia = Asistencia::find($id);
+        $asistencia->delete();
+        return "Asistencia eliminada";
     }
 }

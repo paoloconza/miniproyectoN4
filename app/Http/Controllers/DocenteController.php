@@ -12,7 +12,7 @@ class DocenteController extends Controller
      */
     public function index()
     {
-        //
+        return Docente::all();
     }
 
     /**
@@ -28,7 +28,13 @@ class DocenteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $docente = new Docente();
+        $docente->nombre = $request->nombre;
+        $docente->apellido = $request->apellido;
+        $docente->email = $request->email;
+        $docente->telefono = $request->telefono;
+        $docente->save();
+        return "se creo nuevo docente";
     }
 
     /**

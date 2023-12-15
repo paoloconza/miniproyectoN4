@@ -12,7 +12,7 @@ class MatriculaController extends Controller
      */
     public function index()
     {
-        //
+        return Matricula::all();
     }
 
     /**
@@ -28,7 +28,12 @@ class MatriculaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $matricula = new Matricula();
+        $matricula->alumno_id = $request->alumno_id;
+        $matricula->curso_id = $request->apellido;
+        $matricula->fecha_matriculacion = $request->fecha_matriculacion;
+        $matricula->save();
+        return "se registro una nueva matricula";
     }
 
     /**
@@ -50,16 +55,23 @@ class MatriculaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Matricula $matricula)
+    public function update(Request $request, $id)
     {
-        //
+        $matricula = Matricula::find($id);
+        $matricula->alumno_id = $request->alumno_id;
+        $matricula->curso_id = $request->apellido;
+        $matricula->fecha_matriculacion = $request->fecha_matriculacion;
+        $matricula->save();
+        return "Modificacion exitosa de la matricula";
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Matricula $matricula)
+    public function destroy($id)
     {
-        //
+        $matricula = Matricula::find($id);
+        $matricula->delete();
+        return "Se elimino la matricula";
     }
 }

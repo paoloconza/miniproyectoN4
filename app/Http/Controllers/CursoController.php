@@ -12,7 +12,7 @@ class CursoController extends Controller
      */
     public function index()
     {
-        //
+        return Curso::all();
     }
 
     /**
@@ -28,7 +28,11 @@ class CursoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $curso = new Curso();
+        $curso->curso = $request->nombre;
+        $curso->descripcion = $request->apellido;
+        $curso->save();
+        return "se creo nuevo curso";
     }
 
     /**
